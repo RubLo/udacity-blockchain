@@ -124,12 +124,12 @@ class Blockchain {
 
 
             if (differenceTimeinMin > 5) {
-                reject();
+                return reject(new Error('Request timed out.'));
             }
             else {
                 const verified = bitcoinMessage.verify(message, address, signature);
                 if (!verified) {
-                    reject();
+                    return reject();
                 }
 
                 const block = new BlockClass.Block({ data: { star, "owner": address } });
